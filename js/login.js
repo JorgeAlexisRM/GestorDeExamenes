@@ -14,6 +14,7 @@ function ingresar() {
 function registrar() {
     const email = document.getElementById('EmailRegistro').value;
     const password = document.getElementById('ClaveRegistro').value;
+    const name = document.getElementById('NombreRegistro').value;
     
     auth.createUserWithEmailAndPassword(email, password)
         .then((userCredential) => {
@@ -22,7 +23,7 @@ function registrar() {
             // ...
             
             //window.location.href = "login.html";
-            crearUsuario(user,"maestro");
+            crearUsuario(user,rol,name);
 
         })
         .catch((error) => {
@@ -33,8 +34,9 @@ function registrar() {
         });
 }
 
-function crearUsuario(user,rol){
+function crearUsuario(user,rol,name){
     db.collection("usuarios").doc(user.uid).set({
+        name: name,
         email: user.email,
         rol: rol
     })
