@@ -21,8 +21,9 @@ function registrar() {
             var user = userCredential.user;
             // ...
             
-            window.location.href = "login.html";
-            alert("Usuario creado");
+            //window.location.href = "login.html";
+            crearUsuario(user,"maestro");
+
         })
         .catch((error) => {
             var errorCode = error.code;
@@ -30,4 +31,17 @@ function registrar() {
             // ..
             alert("ERROR AL REGISTRAR USUARIO..."+errorCode);
         });
+}
+
+function crearUsuario(user,rol){
+    db.collection("usuarios").doc(user.uid).set({
+        email: user.email,
+        rol: rol
+    })
+    .then(() => {
+        console.log("Usuario Registrado Exitosamente");
+    })
+    .catch((error) => {
+        console.error("Error al registrar Usuario...", error);
+    });
 }
