@@ -89,6 +89,9 @@ function muestraExamenes() {
     muestr.style.display = 'grid';
     muestra.style.display = 'none';
     saludo.style.display = 'none';
+
+    verExamenes();
+
 }
 
 function muestraCreaExamen() {
@@ -260,3 +263,88 @@ function guardarExamen() {
             console.error("Error adding document: ", error);
         });
 }
+
+function verExamenes() {
+
+    var contenedor = document.getElementById('contenedorExamenes');
+    var tarjetaExamen = "";
+
+    db.collection("examenes").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            const aux = `${doc.data().idMaestro}`;
+
+            if (aux === usuario.id) {
+                console.log(doc);
+                nombreMateria(doc.data().idMateria).then((nombreMateriaValue) => {
+                    let id = doc.id;
+                    let titulo = doc.data().titulo;
+                    tarjetaExamen = tarjetaExamen +
+                        "<div class='infoExam'>" +
+                        "<h1 id='tituloExam'>" + doc.data().titulo + "</h1>" +
+                        "<h4 id='MateriaExam'>" + nombreMateriaValue + "</h4>" +
+                        "<div class='botonesExamen'>" +
+                        '<button class="button-r" onclick="verExamen(\'' + id + '\',\''+titulo+'\')">Ver</button>' +
+                        '<button class="button-r button-a" onclick="">Eliminar</button>' +
+                        '</div>' +
+                        '</div>';
+                    contenedor.innerHTML = tarjetaExamen;
+                }).catch((error) => {
+                    console.error("Error al obtener el nombre de la materia:", error);
+                });
+            }
+        });
+    });
+}
+
+function nombreMateria(idMateria) {
+    const materiaRef = db.collection("materias").doc(idMateria);
+    return materiaRef.get().then((materiaDoc) => {
+        if (materiaDoc.exists) {
+            return materiaDoc.data().nombre;
+        } else {
+            return "Nombre no encontrado";
+        }
+    }).catch((error) => {
+        console.error("Error al obtener la materia:", error);
+        throw error;
+    });
+}
+
+function verExamen(id,titulo) {
+    var examen = document.getElementById('examen');
+    var datos = "<h1>"+titulo+"</h1><br>";
+    examen.innerHTML = datos;
+
+    db.collection("preguntas").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            const aux = `${doc.data().idExamen}`;
+            if (aux === id) {
+                console.log(doc);
+                datos = datos +
+                    '<label for="question" id="pre">' + doc.data().pregunta + '</label><br>' +
+                    '<label for="options">Opciones de Respuesta:</label><br>' +
+                    '<div id="optionsContainer_' + doc.id + '" class="option-container">' +
+                    '<div class="option">' +
+                    '<label for="option1">' + doc.data().A + '</label>' +
+                    '<input type="radio" name="correct_${doc.id}" value="A" id="opcionA${doc.id}">' +
+                    '</div>' +
+                    '<div class="option2">' +
+                    '<label for="option2">'+doc.data().B+'</label>' +
+                    '<input type="radio" name="correct_${doc.id}" value="B" id="opcionB${doc.id}">' +
+                    '</div>' +
+                    '<div class="option3">' +
+                    '<label for="option1">'+doc.data().C+'</label>' +
+                    '<input type="radio" name="correct_${doc.id}" value="C" id="opcionC${doc.id}">' +
+                    '</div>' +
+                    '</div>' +
+                    '<br><br>';
+                examen.innerHTML = datos;
+            }
+        });
+    }).catch((error) => {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorCode + "*/*" + errorMessage);
+    });
+}
+
