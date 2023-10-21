@@ -84,6 +84,10 @@ function muestraExamenes() {
     const contenedorAgregaMateria = document.getElementById('contMateria');
     const materia = document.getElementById('materia');
     const saludo = document.getElementById('saludoUser');
+    /*haciendo que no se visualice el examen*/
+    var examen = document.getElementById('examen');
+    examen.innerHTML = "";
+    /*--------*/
     materia.style.display = 'none';
     contenedorAgregaMateria.style.display = 'none';
     muestr.style.display = 'grid';
@@ -101,6 +105,10 @@ function muestraCreaExamen() {
     const contenedorAgregaMateria = document.getElementById('contMateria');
     const materia = document.getElementById('materia');
     const saludo = document.getElementById('saludoUser');
+    /*haciendo que no se visualice el examen*/
+    var examen = document.getElementById('examen');
+    examen.innerHTML = "";
+    /*--------*/
     materia.style.display = 'none';
     contenedorAgregaMateria.style.display = 'none';
     muestr.style.display = 'none';
@@ -118,6 +126,10 @@ function verAgregarMateria() {
     const contenedorAgregaMateria = document.getElementById('contMateria');
     const materia = document.getElementById('materia');
     const saludo = document.getElementById('saludoUser');
+    /*haciendo que no se visualice el examen*/
+    var examen = document.getElementById('examen');
+    examen.innerHTML = "";
+    /*--------*/
     materia.style.display = 'none';
     muestr.style.display = 'none';
     document.body.display = 'none';
@@ -132,6 +144,10 @@ function muestraMaterias() {
     const contenedorAgregaMateria = document.getElementById('contMateria');
     const materia = document.getElementById('materia');
     const saludo = document.getElementById('saludoUser');
+    /*haciendo que no se visualice el examen*/
+    var examen = document.getElementById('examen');
+    examen.innerHTML = "";
+    /*--------*/
     materia.style.display = 'grid';
     muestr.style.display = 'none';
     document.body.display = 'none';
