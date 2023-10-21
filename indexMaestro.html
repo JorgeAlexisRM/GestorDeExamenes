@@ -30,7 +30,7 @@
         <h1 id="Escuela">Mi Escuela</h1>
         <div class="usuario">
             <img src="imagenes/usuario.jpg" width="40px" height="40px">
-            <h3 id="usuario">Jorge Alexis Ruano Millan</h3>
+            <h3 id="usuario">Alex</h3>
         </div>
     </div>
     <div class="background">
@@ -54,6 +54,9 @@
     <div id="contenedor">
         <label for="menuToggle" id="menuIcon">&#9776;</label>
         <input type="checkbox" id="menuToggle">
+        <div class="saludo">
+            <h1 id="saludoUser"></h1>
+        </div>
         <div class="contendorMateria" id="materia">
             <!--Plantillas para mostrar las materias de firebase desde javascrip-->
             <div class="infoExam">
@@ -64,13 +67,17 @@
         </div>
         <div id="contenedorAccciones">
             <div id="questionsContainer">
-
+                <label for="materiasList">Materia: </label>
+                <input list="listMateria" id="materiasList"><br>
+                <datalist id="listMateria"></datalist>
+                <label for="tituloExamen">Titulo: </label>
+                <input type="text" id="tituloExamen">
                 <h1>Crear Cuestionario</h1>
                 <form id="formula"></form>
             </div>
             <br>
             <button id="addQuestion" class="red-button blue-button" onclick="generaPregunta()">Agregar Pregunta</button>
-            <button id="saveQuestions" class="red-button blue-button" onclick="funcion2()"> Guardar preguntas </button>
+            <button id="saveQuestions" class="red-button blue-button" onclick="guardarExamen()"> Guardar preguntas </button>
 
         </div>
 
@@ -94,7 +101,7 @@
                 <label for="nameMateria" class="la">Materia</label>
                 <input type="text" placeholder="Ingresa el nombre de la materia" id="nameMateria" class="inp">
 
-                <button class="btnAgregaMateria">Agregar</button>
+                <button class="btnAgregaMateria" onclick="agregarMateria()">Agregar</button>
 
             </div>
         </div>
@@ -103,6 +110,12 @@
 
 
 </body>
+<!--Importaciones Firebase-->
+<script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-auth-compat.js"></script>
+
+<script src="js/firebase-con.js"></script>
 <script src="scripts/controladorGeneraExamen.js"></script>
 
 </html>

@@ -1,23 +1,27 @@
 /*---------accion de menu--------------*/
-.contenidoTitulo{
+.contenidoTitulo {
     padding-left: 26%;
     display: grid;
     grid-template-columns: 2fr 1fr;
 }
-#Escuela{
+
+#Escuela {
     width: 100%;
     margin: 0;
     padding: 0;
 }
-h3{
+
+h3 {
     margin: 0;
     padding: 0;
 }
-.usuario{
-   width: 100%;
-   display: grid;
-   grid-template-columns: 1fr 6fr;
+
+.usuario {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 6fr;
 }
+
 #menu {
     height: 100%;
     width: 250px;
@@ -64,15 +68,16 @@ h3{
     transition: margin-left 0.3s;
     padding: 20px;
 }
-#separa{
+
+#separa {
     margin-top: 40px;
 }
 
-a:hover{
-    background: linear-gradient(#1845ad,#23a2f6);
+a:hover {
+    background: linear-gradient(#1845ad, #23a2f6);
     border-radius: 10px;
 }
 
-.cerrarSesion{
+.cerrarSesion {
     margin-top: 98%;
 }

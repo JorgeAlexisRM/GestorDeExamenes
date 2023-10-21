@@ -16,7 +16,7 @@ body {
 #contenedorAccciones{
     width: 100%;
     text-align: center;
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
