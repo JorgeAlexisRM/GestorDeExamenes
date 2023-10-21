@@ -1,0 +1,17 @@
+#materia{
+    width: 100%;
+    padding-top: 20px;
+    display: none;
+    /*display: grid;*/
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-row-gap: 30px;
+    
+}
+
+.materiaNom{
+    margin: 2%;
+}
+
+.infoExam button{
+    margin-top: 10%;
+}
