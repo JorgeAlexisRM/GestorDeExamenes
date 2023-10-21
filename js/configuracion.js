@@ -1,6 +1,6 @@
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 firebase.initializeApp({
-//credenciales
+    //credenciales
 });
 
 // Initialize Cloud Firestore and get a reference to the service
