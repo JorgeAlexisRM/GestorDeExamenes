@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindExam</title>
+
+    <link href="stylesAlumno/circulos.css" rel="stylesheet">
+    <link href="stylesAlumno/menulateral.css" rel="stylesheet">
+
+</head>
+<body>
+    <div class="contenidoTitulo">
+        <h1 id="Escuela">Mi Escuela</h1>
+        <div class="usuario">
+            <img src="user.png" width="40px" height="40px">
+            <h3 id="usuario">Jorge Alexis Ruano Millan</h3>
+        </div>
+    </div>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <nav>       
+            <div id="menu">
+
+                <ul>
+                    <li><a href="#" onclick="muestraExamenClave()" id="separa">Agregar Examen</a></li>
+                    <li><a href="#" onclick="muestraExamenTerminados()">Examenes</a></li>
+                    <li><a href="#" onclick="" class="cerrarSesion">Cerrar Sesion</a></li>
+                </ul>        
+        </div>      
+    </na    v>
+    <div id="contenedor">
+        <label for="menuToggle" id="menuIcon">&#9776;</label>
+        <input type="checkbox" id="menuToggle">
+        <div class="contendorMateria" id="materia">
+            <!--Plantillas para mostrar las materias de firebase desde javascrip-->
+        <div class="ventana">
+            <div class="infoExam">
+                <h1 class="materiaNom" id="nomMateria">Codigo del examen</h1>
+                <label for="Clave">Clave:</label>
+                <input type="password"id="Clave" name="Clave" placeholder="Ingrese su Clave" required>
+                <button class="button-r button-a" onclick="">Ingresar</button>
+        </div>
+            
+            
+        </div>
+            <!--       -->
+        </div>
+        
+
+    </div>
+
+
+</body>
+<script src="scriptsAlumno/controlaMenu.js"></script>
+
+</html>
