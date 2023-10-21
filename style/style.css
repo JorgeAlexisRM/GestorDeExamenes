@@ -29,7 +29,7 @@ body {
     bottom: -80px;
 }
 
-.formulario {
+#Formu {
     height: 480px;
     width: 400px;
     background-color: #273746;
@@ -46,19 +46,25 @@ body {
     
 }
 
-.formulario * {
+#Formu * {
     font-family: "Poppins", sans-serif;
-    color: #ffffff;
+    color: #15bbd5;
     letter-spacing: 0.5px;
     outline: none;
     border: none;
 }
 
-.formulario h3 {
-    font-size: 32px;
-    font-weight: 500;
-    line-height: 42px;
+h3{
+    font-size: 20px;
+    font-weight: 15px;
+    line-height: 22px;
     text-align: center;
+}
+#Formu {
+    font-size: 15px;
+    font-weight: 500px;
+    line-height: 30px;
+    /*text-align: center;*/
 }
 
 label {
@@ -67,6 +73,7 @@ label {
     font-size: 16px;
     font-weight: 500;
 }
+
 
 input {
     display: block;
@@ -79,15 +86,26 @@ input {
     font-size: 14px;
     font-weight: 300;
 }
-
+.roles{
+    display: flex;
+    height: none;
+    width: none;
+}
+.roles input{
+    margin-top: 30px;
+    height: 25px;
+    width: 160px;
+}
 ::placeholder {
     color: #e5e5e5;
 }
 
 button {
-    margin-top: 50px;
+    margin-top: 20px;
     width: 100%;
     background-color: #ffffff;
+    color: #080710e5;
+    
     padding: 15px 0;
     font-size: 18px;
     font-weight: 600;
@@ -106,6 +124,9 @@ button {
     width: 50%;
     padding: 10px;
     margin: 0 auto;
+}
+#btnIngresar{
+    margin-top: 60px;
 }
 
 #btnlogin:focus,

@@ -1,5 +1,42 @@
 examen = document.getElementById('examenes');
 
+//Funciones para mestros
+function mostrarMaterias(uidUser){
+    db.collection("materias").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            const aux = `${doc.data().idMaestro}`;
+
+            if (aux === uidUser) {
+                console.log(doc);
+            }
+        });
+    });
+}
+
+function mostrarExamenes(uidUser){
+    db.collection("examenes").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            const aux = `${doc.data().idMaestro}`;
+            if (aux === uidUser) {
+                console.log(doc);
+            }
+        });
+    });
+}
+
+function mostrarPreguntas(idExamen){
+    db.collection("preguntas").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            const aux = `${doc.data().idExamen}`;
+            if (aux === idExamen) {
+                console.log(doc);
+            }
+        });
+    });
+}
+
+//Funciones base
+
 function mostrar(userReference) {
     //Referencia a la materia
     var docRef = db.collection("materias").doc(userReference);
