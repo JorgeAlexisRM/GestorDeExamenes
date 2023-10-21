@@ -89,6 +89,9 @@ function muestraExamenes() {
     muestr.style.display = 'grid';
     muestra.style.display = 'none';
     saludo.style.display = 'none';
+
+    verExamenes();
+
 }
 
 function muestraCreaExamen() {
@@ -260,3 +263,58 @@ function guardarExamen() {
             console.error("Error adding document: ", error);
         });
 }
+
+function verExamenes() {
+    /*<!-- Plantilla para mostrar todos los examenes de firebase desde javascrip  -->
+            <div class="infoExam">
+                <h1 id="tituloExam">Titulo Exam:POO</h1>
+                <h4 id="MateriaExam">Programacion</h4>
+                <div class="botonesExamen">
+                    <button class="button-r" onclick="">Ver</button>
+                    <button class="button-r button-a" onclick="">Eliminar</button>
+                </div>
+            </div>
+            <!-- -->*/
+
+    var contenedor = document.getElementById('contenedorExamenes');
+    var tarjetaExamen = "";
+
+    db.collection("examenes").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            const aux = `${doc.data().idMaestro}`;
+
+            if (aux === usuario.id) {
+                console.log(doc);
+                nombreMateria(doc.data().idMateria).then((nombreMateriaValue) => {
+                    tarjetaExamen = tarjetaExamen +
+                        "<div class='infoExam'>" +
+                        "<h1 id='tituloExam'>" + doc.data().titulo + "</h1>" +
+                        "<h4 id='MateriaExam'>" + nombreMateriaValue + "</h4>" +
+                        "<div class='botonesExamen'>" +
+                        '<button class="button-r" onclick="">Ver</button>' +
+                        '<button class="button-r button-a" onclick="">Eliminar</button>' +
+                        '</div>' +
+                        '</div>';
+                    contenedor.innerHTML = tarjetaExamen;
+                }).catch((error) => {
+                    console.error("Error al obtener el nombre de la materia:", error);
+                });
+            }
+        });
+    });
+}
+
+function nombreMateria(idMateria) {
+    const materiaRef = db.collection("materias").doc(idMateria);
+    return materiaRef.get().then((materiaDoc) => {
+        if (materiaDoc.exists) {
+            return materiaDoc.data().nombre;
+        } else {
+            return "Nombre no encontrado";
+        }
+    }).catch((error) => {
+        console.error("Error al obtener la materia:", error);
+        throw error;
+    });
+}
+
