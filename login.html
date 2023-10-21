@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="preload" href="style/normalize.css">
-    <link href="style/normalize.css" rel="stylesheet">
-    <link rel="preload" href="style/style.css">
+    <link rel="preload" href="styles/normalize.css">
+    <link href="styles/normalize.css" rel="stylesheet">
+    <link rel="preload" href="styles/styles.css">
     <link href="style/style.css" rel="stylesheet">
 </head>
 
@@ -17,48 +16,52 @@
             <div class="shape"></div>
             <div class="shape"></div>
         </div>
-
-        <div class="formulario" id="Formu">
-            <div>
-                <div class="toggle-switch" id="btnCambio">
-                    <input type="button" id="btnlogin" value="Login">
-                    <input type="button" id="btnRegistro" value="Registro">
-                    <br>
-                    <label class="switch">
-                        <input type="checkbox" id="dark-mode-toggle">
-                        <span class="slider round"></span>
-                    </label>
-                </div>
-                <div id="Login">
-                    <h3>Login Here</h3>
-                    <label for="username">Usuario</label>
-                    <input type="text" placeholder="Email o telefono" id="username">
-                    <label for="password">Contraseña</label>
-                    <input type="password" placeholder="Contraseña" id="password">
-                    <button>Ingresar</button>
-                </div>
-                <div id="Registro">
-                    <h3>Registro</h3>
-                    <span>Nombre</span>
-                    <input type="text" value="" placeholder="Nombre:" id="NombreRegistro">
-                    <span>Correo Electrónico</span>
-                    <input type="text" value="" placeholder="Email:" id="EmailRegistro" required>
-                    <span>Contraseña</span>
-                    <input type="password" value="" placeholder="Password:" id="ClaveRegistro" required>
-                    <button onclick="registrar()">Registrar</button>
-                </div>
+        <div id="Formu">
+            <div class="toggle-switch" id="btnCambio">
+                <input type="button" id="btnlogin" value="Login">
+                <input type="button" id="btnRegistro" value="Registro">
+                <br>
+                <label class="switch">
+                    <input type="checkbox" id="dark-mode-toggle">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <div id="Login">
+                <h3>Login Here</h3>
+                <label for="username">Usuario</label>
+                <input type="text" placeholder="Email o telefono" id="username" required>
+                <label for="password">Contraseña</label>
+                <input type="password" placeholder="Contraseña" id="password" required>
+                <button id="btnIngresar" onclick="ingresar()">Ingresar</button>
+            </div>
+            <div id="Registro">
+                <h3>Registro</h3>
+                <span>Nombre</span>
+                <input type="text" value="" placeholder="Nombre:" id="NombreRegistro" required>
+                <span>Correo Electrónico</span>
+                <input type="text" value="" placeholder="Email:" id="EmailRegistro" required>
+                <span>Contraseña</span>
+                <input type="password" value="" placeholder="Password:" id="ClaveRegistro" required>
+            <div class="roles">
+                <label for="pago3">Estudiante</label>
+                <input type="radio" id="Rol1" name="opcion" value="Estudiante" checked>
+                <label for="pago6">Maestro</label>
+                <input type="radio" id="Rol2" name="opcion" value="Maestro">
+            </div> 
+                <button onclick="registrar()">Registrar</button>
             </div>
         </div>
-    </div>
-    <!--Importaciones Firebase-->
-    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-auth-compat.js"></script>
 
-    <!--Importaciones Configuracion-->
-    <script src="js/configuracion.js"></script>
-    <script src="js/login.js"></script>
-    <script src="js/scripts.js"></script>
+    </div>
 </body>
+<!--Importaciones Firebase-->
+<script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-auth-compat.js"></script>
+
+<script src="js/firebase-con.js"></script>
+<script src="js/controller.js"></script>
+<script src="js/scripts.js"></script>
+<script src="js/login.js"></script>
 
 </html>

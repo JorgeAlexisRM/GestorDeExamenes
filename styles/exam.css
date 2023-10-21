@@ -1,0 +1,39 @@
+#contenedorExamenes{
+    width: 100%;
+    padding-top: 20px;
+    /*display: grid;*/
+    display: none;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-row-gap: 30px;
+    
+}
+#contenidoExamenes{
+    width: 100%;
+    margin-right: 50px;
+}
+.infoExam{   
+    width: 300px;
+    height: 200px;
+    margin-left: 60px;
+    background-color: rgba(255, 255, 255, 0.13);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.button-r {
+    background: linear-gradient(#ff512f, #f09819);
+    font-size: 14px;
+    font-weight:bolder;
+    color: #FFFFFF;
+    border: 2px solid #f09819;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.button-a {
+    background: linear-gradient(#1845ad,#23a2f6);
+    border: 2px solid #23a2f6;
+}
