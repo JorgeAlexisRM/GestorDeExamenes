@@ -1,0 +1,120 @@
+body {
+    background-color: #080710;
+    color: #FFFFFF;
+    text-align: center;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/*---------accion de menu--------------*/
+.contenidoTitulo{
+    padding-left: 26%;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+#Escuela{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+h3{
+    margin: 0;
+    padding: 0;
+}
+.usuario{
+   width: 100%;
+   display: grid;
+   grid-template-columns: 1fr 6fr;
+}
+#menu {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: -250px;
+    background-color: #333;
+    color: #fff;
+    transition: left 0.3s;
+}
+
+#menu ul {
+    list-style: none;
+    padding: 0;
+}
+
+#menu ul li {
+    padding: 10px;
+    text-align: center;
+}
+
+#menu ul li a {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    padding: 10px;
+}
+
+/* Estilos para el botón de abrir/cerrar el menú */
+#menuToggle {
+    display: none;
+}
+
+#menuIcon {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    cursor: pointer;
+}
+
+/* Contenido principal */
+#mainContent {
+    margin-left: 0;
+    transition: margin-left 0.3s;
+    padding: 20px;
+}
+#separa{
+    margin-top: 50px;
+}
+
+a:hover{
+    background: linear-gradient(#1845ad,#23a2f6);
+    border-radius: 10px;
+}
+
+.cerrarSesion{
+    margin-top: 98%;
+}
+.ventana {
+    width: 300px;
+    height: 200px;
+    margin-left: 60px;
+    background-color: rgba(255, 255, 255, 0.13);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+
+.button-a {
+    background: linear-gradient(#1845ad,#23a2f6);
+    border: 2px solid #23a2f6;
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+
+.button-r {
+    background: linear-gradient(#0077ff, #341efc);
+    font-size: 14px;
+    font-weight:bolder;
+    color: #FFFFFF;
+    border: 2px solid #049aff;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+
