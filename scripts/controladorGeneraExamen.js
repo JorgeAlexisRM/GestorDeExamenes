@@ -274,6 +274,15 @@ function guardarExamen() {
                         console.error("Error adding document: ", error);
                     });
             }
+            questionsContainer.innerHTML=
+                `<label for="materiasList">Materia: </label>
+                <input list="listMateria" id="materiasList" class="nomMateria"><br>
+                <datalist id="listMateria"></datalist>
+                <label for="tituloExamen">Titulo: </label>
+                <input type="text" id="tituloExamen">
+                <h1>Crear Cuestionario</h1>
+                <form id="formula"></form>`;;
+            
             alert("Guardado exitosamente");
         })
         .catch((error) => {
