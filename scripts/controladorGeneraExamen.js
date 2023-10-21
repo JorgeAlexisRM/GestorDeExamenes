@@ -311,6 +311,9 @@ function nombreMateria(idMateria) {
 }
 
 function verExamen(id,titulo) {
+    const muestr = document.getElementById('contenedorExamenes');
+    muestr.style.display = 'none';
+
     var examen = document.getElementById('examen');
     var datos = "<h1>"+titulo+"</h1><br>";
     examen.innerHTML = datos;
