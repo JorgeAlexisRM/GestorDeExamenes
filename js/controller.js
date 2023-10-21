@@ -1,5 +1,6 @@
 examen = document.getElementById('examenes');
 
+//Funciones para mestros
 function mostrarMaterias(uidUser){
     db.collection("materias").get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
