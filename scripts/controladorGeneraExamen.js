@@ -258,6 +258,7 @@ function guardarExamen() {
                         console.error("Error adding document: ", error);
                     });
             }
+            alert("Guardado exitosamente");
         })
         .catch((error) => {
             console.error("Error adding document: ", error);
