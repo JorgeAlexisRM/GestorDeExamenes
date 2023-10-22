@@ -27,7 +27,7 @@ function ingresar() {
                 if (doc.exists) {
                     console.log("Document data:", doc.data());
                     // creamos un objeto Usuario
-                    var usuario = {id: doc.id, edad: doc.data().name, rol:doc.data().rol};
+                    var usuario = {id: doc.id, name: doc.data().name, rol:doc.data().rol};
 
                     // Serializa el objeto a una cadena JSON
                     var usuarioSerializado = JSON.stringify(usuario);
