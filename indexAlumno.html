@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindExam</title>
+
+    <link href="stylesalumno/circulos.css" rel="stylesheet">
+    <link href="stylesalumno/menulateral.css" rel="stylesheet">
+</head>
+
+<body onload="mostrarMateriasInscritas()">
+    <div class="contenidoTitulo">
+        <h1 id="Escuela">Mi Escuela</h1>
+        <div class="usuario">
+            <img src="/imagenes/usuario.jpg" width="40px" height="40px">
+            <h3 id="usuario">Jorge Alexis Ruano Millan</h3>
+        </div>
+    </div>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <nav>
+        <div id="menu">
+            <ul>
+                <li><a href="#" onclick="muestraRegistroClave()" id="separa">Agregar Materia</a></li>
+                <li><a href="#" onclick="muestraMateriasAlu()">Materias</a></li>
+                <li><a href="#" onclick="" class="cerrarSesion">Cerrar Sesion</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenedor principal -->
+    <div id="mainContent">
+
+        <!-- Contenedor para agregar clave de materia -->
+        <div id="contenedorClaveMateria">
+            <label for="menuToggle" id="menuIcon">&#9776;</label>
+            <input type="checkbox" id="menuToggle">
+            <div class="contendorMateria" id="materia">
+                <div class="ventana">
+                    <div class="infoExam">
+                        <h1 class="materiaNom" id="nomMateria">Codigo del Materia</h1>
+                        <label for="Clave">Clave:</label>
+                        <input type="text" id="Clave" name="Clave" placeholder="Ingrese su Clave" required>
+                        <button class="button-r button-a" onclick="inscribirMateriaPorClave()">Ingresar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Aquí es donde se muestra la lista de materias -->
+        <div id="listaMaterias">
+            <!-- Las tarjetas de las materias se generará dinámicamente aquí -->
+        </div>
+        
+    </div> <!-- Fin del contenedor principal -->
+
+    <!-- Importaciones Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-auth-compat.js"></script>
+
+    <script src="js/firebase-con.js"></script>
+    <script src="scriptsalumno/controlaMenu.js"></script>
+    <script src="scriptsalumno/clave.js"></script>
+</body>
+
+</html>
