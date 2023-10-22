@@ -187,7 +187,7 @@ function nombreUsuario(uidUser) {
 function agregarMateria() {
     var materia = document.getElementById('nameMateria').value;
     var mat = document.getElementById('nameMateria');
-
+    if(materia!=""){
     db.collection("materias").add({
         idMaestro: usuario.id,
         nombre: materia
@@ -200,7 +200,9 @@ function agregarMateria() {
         .catch((error) => {
             console.error("Error adding document: ", error);
         });
-
+    }else{
+        alert("debes de llenar los campos")
+    }
 }
 
 function verMaterias() {
