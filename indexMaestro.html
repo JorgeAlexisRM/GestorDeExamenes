@@ -47,7 +47,7 @@
                 <li><a href="#" onclick="muestraCreaExamen()">Genera Nuevo Examen</a></li>
                 <li><a href="#" onclick="muestraExamenes()">Examenes</a></li>
                 <li><a href="#" onclick="verAgregarMateria()">Agregar materia</a></li>
-                <li><a href="#" onclick="" class="cerrarSesion">Cerrar Sesion</a></li>
+                <li><a href="#" onclick="cerrarSesion()" class="cerrarSesion">Cerrar Sesion</a></li>
             </ul>
         </div>
     </nav>
@@ -68,7 +68,7 @@
         <div id="contenedorAccciones">
             <div id="questionsContainer">
                 <label for="materiasList">Materia: </label>
-                <input list="listMateria" id="materiasList"><br>
+                <input list="listMateria" id="materiasList" class="nomMateria"><br>
                 <datalist id="listMateria"></datalist>
                 <label for="tituloExamen">Titulo: </label>
                 <input type="text" id="tituloExamen">
