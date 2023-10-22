@@ -63,18 +63,29 @@ h3{
 }
 
 #menuIcon {
-    position: absolute;
-    top: 30px;
-    left: 30px;
-    cursor: pointer;
+    position: fixed;
+    top: 10px;  
+    left: 10px;
+    z-index: 1000;
 }
+
 
 /* Contenido principal */
 #mainContent {
     margin-left: 0;
     transition: margin-left 0.3s;
     padding: 20px;
+    position: relative;
 }
+
+#contenedorClaveMateria {
+    z-index: 1;
+    position: absolute;
+    top: 60px; 
+    left: 260px; 
+    width: 100%; 
+}
+
 #separa{
     margin-top: 50px;
 }
