@@ -84,6 +84,10 @@ function muestraExamenes() {
     const contenedorAgregaMateria = document.getElementById('contMateria');
     const materia = document.getElementById('materia');
     const saludo = document.getElementById('saludoUser');
+    /*haciendo que no se visualice el examen*/
+    var examen = document.getElementById('examen');
+    examen.innerHTML = "";
+    /*--------*/
     materia.style.display = 'none';
     contenedorAgregaMateria.style.display = 'none';
     muestr.style.display = 'grid';
@@ -101,6 +105,10 @@ function muestraCreaExamen() {
     const contenedorAgregaMateria = document.getElementById('contMateria');
     const materia = document.getElementById('materia');
     const saludo = document.getElementById('saludoUser');
+    /*haciendo que no se visualice el examen*/
+    var examen = document.getElementById('examen');
+    examen.innerHTML = "";
+    /*--------*/
     materia.style.display = 'none';
     contenedorAgregaMateria.style.display = 'none';
     muestr.style.display = 'none';
@@ -118,6 +126,10 @@ function verAgregarMateria() {
     const contenedorAgregaMateria = document.getElementById('contMateria');
     const materia = document.getElementById('materia');
     const saludo = document.getElementById('saludoUser');
+    /*haciendo que no se visualice el examen*/
+    var examen = document.getElementById('examen');
+    examen.innerHTML = "";
+    /*--------*/
     materia.style.display = 'none';
     muestr.style.display = 'none';
     document.body.display = 'none';
@@ -132,6 +144,10 @@ function muestraMaterias() {
     const contenedorAgregaMateria = document.getElementById('contMateria');
     const materia = document.getElementById('materia');
     const saludo = document.getElementById('saludoUser');
+    /*haciendo que no se visualice el examen*/
+    var examen = document.getElementById('examen');
+    examen.innerHTML = "";
+    /*--------*/
     materia.style.display = 'grid';
     muestr.style.display = 'none';
     document.body.display = 'none';
@@ -170,18 +186,23 @@ function nombreUsuario(uidUser) {
 
 function agregarMateria() {
     var materia = document.getElementById('nameMateria').value;
-
-    db.collection("materias").add({
-        idMaestro: usuario.id,
-        nombre: materia
-    })
-        .then((docRef) => {
-            console.log("Document written with ID: ", docRef.id);
+    var mat = document.getElementById('nameMateria');
+    if (materia != "") {
+        db.collection("materias").add({
+            idMaestro: usuario.id,
+            nombre: materia
         })
-        .catch((error) => {
-            console.error("Error adding document: ", error);
-        });
-
+            .then((docRef) => {
+                alert("Materia Guardada exitosamente");
+                console.log("Document written with ID: ", docRef.id);
+                mat.value = "";
+            })
+            .catch((error) => {
+                console.error("Error adding document: ", error);
+            });
+    } else {
+        alert("debes de llenar los campos")
+    }
 }
 
 function verMaterias() {
@@ -198,7 +219,7 @@ function verMaterias() {
                     "<div class='infoExam'>" +
                     "<h1 class='materiaNom' id='nomMateria'>" + doc.data().nombre + "</h1>" +
                     "<h2>" + doc.id + "</h2>" +
-                    "<button class='button-r button-a' onclick=''>Eliminar</button>" +
+                    "<button class='button-r button-a' onclick='eliminarMateria(\"" + doc.id + "\")'>Eliminar</button>" +
                     "</div>";
 
                 contenedor.innerHTML = tarjetaMateria;
@@ -258,6 +279,16 @@ function guardarExamen() {
                         console.error("Error adding document: ", error);
                     });
             }
+            questionsContainer.innerHTML =
+                `<label for="materiasList">Materia: </label>
+                <input list="listMateria" id="materiasList" class="nomMateria"><br>
+                <datalist id="listMateria"></datalist>
+                <label for="tituloExamen">Titulo: </label>
+                <input type="text" id="tituloExamen">
+                <h1>Crear Cuestionario</h1>
+                <form id="formula"></form>`;;
+
+            alert("Guardado exitosamente");
         })
         .catch((error) => {
             console.error("Error adding document: ", error);
@@ -283,8 +314,8 @@ function verExamenes() {
                         "<h1 id='tituloExam'>" + doc.data().titulo + "</h1>" +
                         "<h4 id='MateriaExam'>" + nombreMateriaValue + "</h4>" +
                         "<div class='botonesExamen'>" +
-                        '<button class="button-r" onclick="verExamen(\'' + id + '\',\''+titulo+'\')">Ver</button>' +
-                        '<button class="button-r button-a" onclick="">Eliminar</button>' +
+                        '<button class="button-r" onclick="verExamen(\'' + id + '\',\'' + titulo + '\')">Ver</button>' +
+                        '<button class="button-r button-a" onclick="eliminarExamen(\'' + id + '\')">Eliminar</button>' +
                         '</div>' +
                         '</div>';
                     contenedor.innerHTML = tarjetaExamen;
@@ -310,9 +341,12 @@ function nombreMateria(idMateria) {
     });
 }
 
-function verExamen(id,titulo) {
+function verExamen(id, titulo) {
+    const muestr = document.getElementById('contenedorExamenes');
+    muestr.style.display = 'none';
+
     var examen = document.getElementById('examen');
-    var datos = "<h1>"+titulo+"</h1><br>";
+    var datos = "<h1>" + titulo + "</h1><br>";
     examen.innerHTML = datos;
 
     db.collection("preguntas").get().then((querySnapshot) => {
@@ -329,11 +363,11 @@ function verExamen(id,titulo) {
                     '<input type="radio" name="correct_${doc.id}" value="A" id="opcionA${doc.id}">' +
                     '</div>' +
                     '<div class="option2">' +
-                    '<label for="option2">'+doc.data().B+'</label>' +
+                    '<label for="option2">' + doc.data().B + '</label>' +
                     '<input type="radio" name="correct_${doc.id}" value="B" id="opcionB${doc.id}">' +
                     '</div>' +
                     '<div class="option3">' +
-                    '<label for="option1">'+doc.data().C+'</label>' +
+                    '<label for="option1">' + doc.data().C + '</label>' +
                     '<input type="radio" name="correct_${doc.id}" value="C" id="opcionC${doc.id}">' +
                     '</div>' +
                     '</div>' +
@@ -348,3 +382,100 @@ function verExamen(id,titulo) {
     });
 }
 
+function eliminarExamen(idExamen) {
+
+    db.collection("preguntas").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            const aux = `${doc.data().idExamen}`;
+            if (aux === idExamen) {
+                db.collection("preguntas").doc(doc.id).delete().then(() => {
+                    console.log("Pregunta eliminada")
+                }).catch((error) => {
+                    // Manejo de errores
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    console.log(errorCode + "*/*" + errorMessage);
+                });
+            }
+        });
+    }).catch((error) => {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorCode + "*/*" + errorMessage);
+    });
+
+    db.collection("examenes").doc(idExamen).delete().then(() => {
+        alert("Examen borrado");
+    }).catch((error) => {
+        // Manejo de errores
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorCode + "*/*" + errorMessage);
+    });
+}
+
+function eliminarMateria(idMateria) {
+    db.collection("examenes").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            const aux = `${doc.data().idMateria}`;
+            if (aux === idMateria) {
+                db.collection("preguntas").get().then((querySnapshot) => {
+                    querySnapshot.forEach((docE) => {
+                        const aux = `${docE.data().idExamen}`;
+                        if (aux === doc.id) {
+                            db.collection("preguntas").doc(docE.id).delete().then(() => {
+                                console.log("Pregunta eliminada")
+                            }).catch((error) => {
+                                // Manejo de errores
+                                var errorCode = error.code;
+                                var errorMessage = error.message;
+                                console.log(errorCode + "*/*" + errorMessage);
+                            });
+                        }
+                    });
+                }).catch((error) => {
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    console.log(errorCode + "*/*" + errorMessage);
+                });
+
+                db.collection("examenes").doc(doc.id).delete().then(() => {
+                    alert("Examen borrado");
+                }).catch((error) => {
+                    // Manejo de errores
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    console.log(errorCode + "*/*" + errorMessage);
+                });
+            }
+        });
+    }).catch((error) => {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorCode + "*/*" + errorMessage);
+    });
+
+    db.collection("materias").doc(idMateria).delete().then(() => {
+        alert("Materia borrada");
+    }).catch((error) => {
+        // Manejo de errores
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorCode + "*/*" + errorMessage);
+    });
+
+}
+
+function cerrarSesion() {
+    // Cerrar sesión en Firebase Authentication
+    firebase.auth().signOut().then(function () {
+        // Cierre de sesión exitoso
+        alert("Nos vemos pronto..." + usuario.name);
+        window.location.href = "login.html";
+    }).catch(function (error) {
+        // Manejo de errores
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorCode + "*/*" + errorMessage);
+    });
+}
