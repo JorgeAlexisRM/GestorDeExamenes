@@ -186,13 +186,16 @@ function nombreUsuario(uidUser) {
 
 function agregarMateria() {
     var materia = document.getElementById('nameMateria').value;
+    var mat = document.getElementById('nameMateria');
 
     db.collection("materias").add({
         idMaestro: usuario.id,
         nombre: materia
     })
         .then((docRef) => {
+            alert("Materia Guardada exitosamente");
             console.log("Document written with ID: ", docRef.id);
+            mat.value="";
         })
         .catch((error) => {
             console.error("Error adding document: ", error);
