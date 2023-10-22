@@ -16,7 +16,6 @@ function inscribirMateriaPorClave() {
             }).then(() => {
                 alert("Has sido inscrito en la materia exitosamente.");
                
-
                  // Llamamos a la función para actualizar la lista de materias inscritas
                 mostrarMateriasInscritas();
 
@@ -29,9 +28,8 @@ function inscribirMateriaPorClave() {
         }
     }).catch((error) => {
         console.error("Error al obtener la materia: ", error);
-    });
+    }); 
 }
-
 
 // Función para mostrar las materias inscritas del alumno
 function mostrarMateriasInscritas() {
@@ -53,12 +51,12 @@ function mostrarMateriasInscritas() {
                 
                 materiaRef.get().then((materiaDoc) => {
                     if (materiaDoc.exists) {
-                        // generamos el HTML para cada materia
+                        // Aquí generamos el HTML para cada materia
                         const materiaData = materiaDoc.data();
                         const materiaElement = `
-                            <div class="tarjetaMateria">
-                                <h3>${materiaData.nombre}</h3>
-                                <!-- Aquí puedes agregar más detalles de la materia si lo deseas -->
+                            <div class="materia-card" data-id="${materiaId}" onclick="mostrarExamenes('${materiaId}')">
+                                <h2>${materiaData.nombre}</h2>
+                               
                             </div>
                         `;
                         listaMateriasDiv.innerHTML += materiaElement;
@@ -71,5 +69,48 @@ function mostrarMateriasInscritas() {
     }).catch((error) => {
         console.error("Error al obtener las materias inscritas del alumno: ", error);
     });
+    document.getElementById("divParaExamenes").style.display = 'none';
 }
+
+
+//mostrar examens
+function mostrarExamenes(materiaId) {
+    // Ocultar el contenedor de tarjetas de materias
+    document.getElementById("listaMaterias").style.display = 'none';
+
+    // Mostrar el contenedor de tarjetas de exámenes
+    const examenesDiv = document.getElementById("divParaExamenes");
+    examenesDiv.style.display = 'block';
+
+    // Consultar la colección "examenes" en Firebase para obtener exámenes asociados a materiaId
+    const examenesRef = firebase.firestore().collection("examenes").where("idMateria", "==", materiaId);
+
+    examenesRef.get().then((querySnapshot) => {
+        examenesDiv.innerHTML = ''; // Limpiar el div antes de agregar contenido nuevo
+
+        querySnapshot.forEach((examDoc) => {
+            const examData = examDoc.data();
+            const examElement = `
+                <div class="examen-card">
+                    <h2>${examData.titulo}</h2>
+                    <!-- Botón Ver con data-id y un id único -->
+                    <button class="ver-btn" data-id="${examDoc.id}" id="verBtn_${examDoc.id}">Ver</button>
+                </div>
+            `;
+
+            examenesDiv.innerHTML += examElement;
+
+            // Ahora, añade un oyente de eventos para el botón que acabas de agregar
+            document.getElementById(`verBtn_${examDoc.id}`).addEventListener("click", function() {
+                verExamen(examDoc.id, examData.titulo);
+            });
+        });
+    }).catch((error) => {
+        console.error("Error al obtener los exámenes: ", error);
+    });
+}
+
+
+
+
 

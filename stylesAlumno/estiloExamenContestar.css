@@ -1,0 +1,11 @@
+.examen-container {
+    border: 1px solid #e0e0e031;
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 800px; 
+    margin: 20px auto; 
+    box-shadow: 0 4px 6px rgba(65, 65, 65, 0.199);
+    backdrop-filter: blur(8px);
+    overflow: auto; 
+    background-color: #9494941a; /* Color de fondo de la tarjeta */
+}
