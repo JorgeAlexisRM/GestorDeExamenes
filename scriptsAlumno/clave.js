@@ -82,35 +82,58 @@ function mostrarExamenes(materiaId) {
     const examenesDiv = document.getElementById("divParaExamenes");
     examenesDiv.style.display = 'block';
 
-    // Consultar la colección "examenes" en Firebase para obtener exámenes asociados a materiaId
-    const examenesRef = firebase.firestore().collection("examenes").where("idMateria", "==", materiaId);
+    const userId = firebase.auth().currentUser.uid;
 
-    examenesRef.get().then((querySnapshot) => {
-        examenesDiv.innerHTML = ''; // Limpiar el div antes de agregar contenido nuevo
+    // Consulta las calificaciones del estudiante
+    const calificacionesRef = firebase.firestore().collection("calificaciones").where("alumnoId", "==", userId);
 
-        querySnapshot.forEach((examDoc) => {
-            const examData = examDoc.data();
-            const examElement = `
-                <div class="examen-card">
-                    <h2>${examData.titulo}</h2>
-                    <!-- Botón Ver con data-id y un id único -->
-                    <button class="ver-btn" data-id="${examDoc.id}" id="verBtn_${examDoc.id}">Realizar Examen</button>
-                </div>
-            `;
+    calificacionesRef.get().then((calificacionesSnapshot) => {
+        const examenesRealizados = calificacionesSnapshot.docs.map(doc => doc.data().examenId);
 
-            examenesDiv.innerHTML += examElement;
+        // Consultar la colección "examenes" en Firebase
+        const examenesRef = firebase.firestore().collection("examenes").where("idMateria", "==", materiaId);
 
-            // Ahora, añade un oyente de eventos para el botón que acabas de agregar
-            document.getElementById(`verBtn_${examDoc.id}`).addEventListener("click", function() {
-                verExamen(examDoc.id, examData.titulo);
+        examenesRef.get().then((querySnapshot) => {
+            examenesDiv.innerHTML = ''; 
+
+            querySnapshot.forEach((examDoc) => {
+                const examData = examDoc.data();
+                let examElement;
+
+                if (examenesRealizados.includes(examDoc.id)) {
+                    // Si el estudiante ya realizó el examen, muestra la calificación
+                    const calificacion = calificacionesSnapshot.docs.find(doc => doc.data().examenId === examDoc.id).data().calificacion;
+                    examElement = `
+                        <div class="examen-card" data-id="${examDoc.id}">
+                            <h2>${examData.titulo}</h2>
+                            <p>Tu calificación: ${calificacion}</p>
+                        </div>
+                    `;
+                } else {
+
+                    // Si no, muestra el botón "Realizar Examen"
+                    examElement = `
+                    <div class="examen-card" data-id="${examDoc.id}">
+                        <h2>${examData.titulo}</h2>
+                        <button class="ver-btn" data-id="${examDoc.id}" id="verBtn_${examDoc.id}" onclick="console.log('Botón presionado');">Realizar Examen</button>
+                    </div>
+                    `;
+                }
+
+                examenesDiv.innerHTML += examElement;
+
+                // Si el botón "Realizar Examen" existe, añade un oyente de eventos
+                if (!examenesRealizados.includes(examDoc.id)) {
+                    document.getElementById(`verBtn_${examDoc.id}`).addEventListener("click", function() {
+                        verExamen(examDoc.id, examData.titulo);
+                    });
+                }
             });
+        }).catch((error) => {
+            console.error("Error al obtener los exámenes: ", error);
         });
+
     }).catch((error) => {
-        console.error("Error al obtener los exámenes: ", error);
+        console.error("Error al obtener las calificaciones del estudiante: ", error);
     });
 }
-
-
-
-
-

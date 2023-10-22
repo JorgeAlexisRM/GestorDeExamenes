@@ -2,6 +2,8 @@
 
 // Función para mostrar el examen al alumno y permitirle responder
 function verExamen(id, titulo) {
+    console.log("Función verExamen llamada con ID:", id, "y título:", titulo);
+    
     var examen = document.getElementById('examen');
     
     // Ocultar el contenedor de tarjetas de exámenes
@@ -11,8 +13,10 @@ function verExamen(id, titulo) {
     var datos = `<div class="examen-container">
                     <h1>${titulo}</h1><br>`;
 
-    db.collection("preguntas").where("idExamen", "==", id).get().then((querySnapshot) => {
-        console.log(querySnapshot);
+    db.collection("preguntas").where("idExamen", "==", id).get()
+    .then((querySnapshot) => {
+        console.log("Preguntas obtenidas:", querySnapshot.docs.length);
+        
         querySnapshot.forEach((doc) => {
             datos += `
                 <label for="question" id="pre">${doc.data().pregunta}</label><br>
@@ -33,20 +37,22 @@ function verExamen(id, titulo) {
                 </div><br><br>`;
         });
 
-        // Agrega el botón y cierra la tarjeta aquí
-        datos += `<button onclick="submitExamen('${id}')">Subir Examen</button>`;
+        // Modificación: pasa 'titulo' como argumento a la función 'submitExamen'
+        datos += `<button onclick="submitExamen('${id}', '${titulo}')">Subir Examen</button>`;
         datos += `</div>`; // Esto cierra el div de examen-container
 
         examen.innerHTML = datos;
-        examen.style.display = 'block';  // Asegúrate de que el contenedor del examen esté visible
+        examen.style.display = 'block';  
 
-    }).catch((error) => {
+    })
+    .catch((error) => {
         console.error("Error al obtener las preguntas del examen:", error);
     });
 }
 
 
-function submitExamen(examenId) {
+
+function submitExamen(examenId, titulo) {
     function calificarExamen() {
         let correctas = 0;
         let totalPreguntas = 0;
@@ -61,6 +67,7 @@ function submitExamen(examenId) {
             });
 
             const calificacion = (correctas / totalPreguntas) * 100;
+            const calificacionRedondeada = Math.round(calificacion * 100) / 100; 
             alert("Tu calificación es: " + calificacion);
     
             // Guardar la calificación en Firebase
@@ -71,6 +78,15 @@ function submitExamen(examenId) {
                 calificacion: calificacion
             }).then(() => {
                 console.log("Calificación guardada exitosamente.");
+
+                // Actualizar la interfaz
+                const examenCard = document.querySelector(`[data-id="${examenId}"]`);
+                examenCard.innerHTML = `
+                <h2>${titulo}</h2>
+                <p>Tu calificación: ${calificacionRedondeada}</p>
+                `;
+
+                
             }).catch((error) => {
                 console.error("Error al guardar la calificación:", error);
             });
