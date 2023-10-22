@@ -32,6 +32,13 @@ input[type="radio"] {
     border-radius: 8px;
 }
 
+.nomMateria{
+    margin: 5px;
+    padding: 10px;
+    border: 2px solid;
+    border-radius: 8px;
+}
+
 /* Estilo para los botones */
 .red-button {
     background: linear-gradient(#ff512f, #f09819);

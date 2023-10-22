@@ -84,6 +84,10 @@ function muestraExamenes() {
     const contenedorAgregaMateria = document.getElementById('contMateria');
     const materia = document.getElementById('materia');
     const saludo = document.getElementById('saludoUser');
+    /*haciendo que no se visualice el examen*/
+    var examen = document.getElementById('examen');
+    examen.innerHTML = "";
+    /*--------*/
     materia.style.display = 'none';
     contenedorAgregaMateria.style.display = 'none';
     muestr.style.display = 'grid';
@@ -101,6 +105,10 @@ function muestraCreaExamen() {
     const contenedorAgregaMateria = document.getElementById('contMateria');
     const materia = document.getElementById('materia');
     const saludo = document.getElementById('saludoUser');
+    /*haciendo que no se visualice el examen*/
+    var examen = document.getElementById('examen');
+    examen.innerHTML = "";
+    /*--------*/
     materia.style.display = 'none';
     contenedorAgregaMateria.style.display = 'none';
     muestr.style.display = 'none';
@@ -118,6 +126,10 @@ function verAgregarMateria() {
     const contenedorAgregaMateria = document.getElementById('contMateria');
     const materia = document.getElementById('materia');
     const saludo = document.getElementById('saludoUser');
+    /*haciendo que no se visualice el examen*/
+    var examen = document.getElementById('examen');
+    examen.innerHTML = "";
+    /*--------*/
     materia.style.display = 'none';
     muestr.style.display = 'none';
     document.body.display = 'none';
@@ -132,6 +144,10 @@ function muestraMaterias() {
     const contenedorAgregaMateria = document.getElementById('contMateria');
     const materia = document.getElementById('materia');
     const saludo = document.getElementById('saludoUser');
+    /*haciendo que no se visualice el examen*/
+    var examen = document.getElementById('examen');
+    examen.innerHTML = "";
+    /*--------*/
     materia.style.display = 'grid';
     muestr.style.display = 'none';
     document.body.display = 'none';
@@ -170,18 +186,23 @@ function nombreUsuario(uidUser) {
 
 function agregarMateria() {
     var materia = document.getElementById('nameMateria').value;
-
+    var mat = document.getElementById('nameMateria');
+    if(materia!=""){
     db.collection("materias").add({
         idMaestro: usuario.id,
         nombre: materia
     })
         .then((docRef) => {
+            alert("Materia Guardada exitosamente");
             console.log("Document written with ID: ", docRef.id);
+            mat.value="";
         })
         .catch((error) => {
             console.error("Error adding document: ", error);
         });
-
+    }else{
+        alert("debes de llenar los campos")
+    }
 }
 
 function verMaterias() {
@@ -258,6 +279,16 @@ function guardarExamen() {
                         console.error("Error adding document: ", error);
                     });
             }
+            questionsContainer.innerHTML=
+                `<label for="materiasList">Materia: </label>
+                <input list="listMateria" id="materiasList" class="nomMateria"><br>
+                <datalist id="listMateria"></datalist>
+                <label for="tituloExamen">Titulo: </label>
+                <input type="text" id="tituloExamen">
+                <h1>Crear Cuestionario</h1>
+                <form id="formula"></form>`;;
+            
+            alert("Guardado exitosamente");
         })
         .catch((error) => {
             console.error("Error adding document: ", error);
@@ -311,6 +342,9 @@ function nombreMateria(idMateria) {
 }
 
 function verExamen(id,titulo) {
+    const muestr = document.getElementById('contenedorExamenes');
+    muestr.style.display = 'none';
+
     var examen = document.getElementById('examen');
     var datos = "<h1>"+titulo+"</h1><br>";
     examen.innerHTML = datos;
