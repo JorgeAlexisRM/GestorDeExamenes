@@ -15,7 +15,8 @@ function inscribirMateriaPorClave() {
                 materiasInscritas: firebase.firestore.FieldValue.arrayUnion(claveMateria)
             }).then(() => {
                 alert("Has sido inscrito en la materia exitosamente.");
-               
+                // Aquí puedes llamar a otra función para actualizar la lista de materias en la interfaz
+
                  // Llamamos a la función para actualizar la lista de materias inscritas
                 mostrarMateriasInscritas();
 
@@ -72,7 +73,6 @@ function mostrarMateriasInscritas() {
     document.getElementById("divParaExamenes").style.display = 'none';
 }
 
-
 //mostrar examens
 function mostrarExamenes(materiaId) {
     // Ocultar el contenedor de tarjetas de materias
@@ -94,7 +94,7 @@ function mostrarExamenes(materiaId) {
                 <div class="examen-card">
                     <h2>${examData.titulo}</h2>
                     <!-- Botón Ver con data-id y un id único -->
-                    <button class="ver-btn" data-id="${examDoc.id}" id="verBtn_${examDoc.id}">Ver</button>
+                    <button class="ver-btn" data-id="${examDoc.id}" id="verBtn_${examDoc.id}">Realizar Examen</button>
                 </div>
             `;
 

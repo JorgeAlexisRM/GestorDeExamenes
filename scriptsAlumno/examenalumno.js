@@ -1,6 +1,11 @@
+// examenAlumno.js
+
 // Función para mostrar el examen al alumno y permitirle responder
 function verExamen(id, titulo) {
     var examen = document.getElementById('examen');
+    
+    // Ocultar el contenedor de tarjetas de exámenes
+    document.getElementById("divParaExamenes").style.display = 'none';
     
     // Inicia la tarjeta aquí
     var datos = `<div class="examen-container">
@@ -33,6 +38,7 @@ function verExamen(id, titulo) {
         datos += `</div>`; // Esto cierra el div de examen-container
 
         examen.innerHTML = datos;
+        examen.style.display = 'block';  // Asegúrate de que el contenedor del examen esté visible
 
     }).catch((error) => {
         console.error("Error al obtener las preguntas del examen:", error);

@@ -1,22 +1,25 @@
 function muestraRegistroClave() {
     const contenedorClaveMateria = document.getElementById('contenedorClaveMateria');
     const listaMateriasDiv = document.getElementById('listaMaterias');
-    const examenesDiv = document.getElementById("divParaExamenes");  // Obtiene el contenedor de exámenes
+    const examenesDiv = document.getElementById("divParaExamenes");
+    const examen = document.getElementById('examen');  // Obtiene el contenedor del examen
     
-    contenedorClaveMateria.style.display = 'block'; // Muestra el contenedor para agregar clave
-    listaMateriasDiv.style.display = 'none'; // Oculta las materias inscritas
-    examenesDiv.style.display = 'none'; // Oculta las tarjetas de exámenesz
+    contenedorClaveMateria.style.display = 'block';
+    listaMateriasDiv.style.display = 'none';
+    examenesDiv.style.display = 'none';
+    examen.style.display = 'none';  // Oculta el contenedor del examen
 }
-
 
 function muestraMateriasAlu() {
     const contenedorClaveMateria = document.getElementById('contenedorClaveMateria');
     const listaMateriasDiv = document.getElementById('listaMaterias');
-    const examenesDiv = document.getElementById("divParaExamenes"); 
+    const examenesDiv = document.getElementById("divParaExamenes");
+    const examen = document.getElementById('examen');  // Obtiene el contenedor del examen
     
-    contenedorClaveMateria.style.display = 'none'; 
-    listaMateriasDiv.style.display = 'block'; 
-    examenesDiv.style.display = 'none'; 
+    contenedorClaveMateria.style.display = 'none';
+    listaMateriasDiv.style.display = 'block';
+    examenesDiv.style.display = 'none';
+    examen.style.display = 'none';  // Oculta el contenedor del examen
 
     // Llamamos a la función para actualizar la lista de materias inscritas
     mostrarMateriasInscritas();
