@@ -39,7 +39,7 @@ function ingresar() {
                     if(doc.data().rol === 'Maestro'){
                         window.location.href = "indexMaestro.html";
                     } else if(doc.data().rol === 'Estudiante'){
-                        window.location.href = "indexalumno.html";
+                        window.location.href = "indexAlumno.html";
                     }
                 } else {
                     // doc.data() will be undefined in this case
