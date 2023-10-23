@@ -36,14 +36,11 @@ function ingresar() {
                     localStorage.setItem('usuario', usuarioSerializado);
 
                     //redirigimos a la seccion deacuerdo al rol
-                    if(doc.data().rol==='Maestro'){
+                    if(doc.data().rol === 'Maestro'){
                         window.location.href = "indexMaestro.html";
-                    }else{
-                        if(doc.data().rol==='Estudiante'){
-                            window.location.href = "indexAlumno.html";
-                        }
+                    } else if(doc.data().rol === 'Estudiante'){
+                        window.location.href = "indexalumno.html";
                     }
-
                 } else {
                     // doc.data() will be undefined in this case
                     console.log("No existe document!");

@@ -1,0 +1,22 @@
+/* Tarjeta de Materia */
+.materia-card {
+    width: 900px;
+    height: 80px;
+    margin-left: 60px;
+    background-color: rgba(255, 255, 255, 0.13);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease; 
+}
+
+.materia-card:hover {
+    transform: translateY(-5px) rotate(0deg); 
+}
+
+.materia-card h2 {
+    margin: 0; 
+    font-size: 24px; 
+    color: #ffffff; 
+}
