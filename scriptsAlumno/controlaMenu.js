@@ -78,7 +78,7 @@ function cerrarSesion() {
     // Cerrar sesión en Firebase Authentication
     firebase.auth().signOut().then(function () {
         // Cierre de sesión exitoso
-        alert("Nos vemos pronto..."+usuario.id);
+        alert("Nos vemos pronto..."+usuario.name);
         window.location.href = "login.html";
     }).catch(function (error) {
         // Manejo de errores
