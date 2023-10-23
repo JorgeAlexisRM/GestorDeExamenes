@@ -38,6 +38,10 @@ function ingresar() {
                     //redirigimos a la seccion deacuerdo al rol
                     if(doc.data().rol==='Maestro'){
                         window.location.href = "indexMaestro.html";
+                    }else{
+                        if(doc.data().rol==='Estudiante'){
+                            window.location.href = "indexAlumno.html";
+                        }
                     }
 
                 } else {
