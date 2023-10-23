@@ -49,3 +49,41 @@ document.getElementById('menuToggle').addEventListener('change', function () {
         }
     }
 });
+
+//Controladores de Usuario
+// Recupera la cadena JSON del localStorage
+var usuarioSerializado = localStorage.getItem('usuario');
+
+// Deserializa la cadena JSON a un objeto JavaScript
+var usuario = JSON.parse(usuarioSerializado);
+
+var tituloLogin = document.getElementById('usuario');
+nombreUsuario(usuario.id);
+
+// Encuentra el nombre de Usuario
+function nombreUsuario(uidUser) {
+    const docRef = db.collection("usuarios").doc(uidUser);
+    //Solicitamos los datos del documento referido
+    docRef.get().then((doc) => {
+        console.log(doc.data());
+        tituloLogin.innerHTML = doc.data().name;
+    }).catch((error) => {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorCode + "*/*" + errorMessage);
+    });
+}
+
+function cerrarSesion() {
+    // Cerrar sesión en Firebase Authentication
+    firebase.auth().signOut().then(function () {
+        // Cierre de sesión exitoso
+        alert("Nos vemos pronto..."+usuario.id);
+        window.location.href = "login.html";
+    }).catch(function (error) {
+        // Manejo de errores
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorCode + "*/*" + errorMessage);
+    });
+}
