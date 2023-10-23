@@ -1,0 +1,45 @@
+/* Tarjeta de Examen */
+.examen-card {
+    width: 200px;
+    height: 200px;
+    margin-left: 70px;
+    margin-bottom: 20px;
+    background-color: rgba(255, 255, 255, 0.137);
+    backdrop-filter: blur(8px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    
+    /* Cambios para acomodar el contenido */
+    display: flex;
+    flex-direction: column; /* Organizar elementos en columna */
+    justify-content: space-between; /* Espacio entre los elementos */
+    padding: 25px;
+    
+    transition: transform 0.3s ease;
+}
+
+.examen-card:hover {
+    transform: translateY(-8px) rotate(0deg);
+}
+
+.examen-card h2 {
+    margin-bottom: auto; /* Esto empuja el botón hacia la parte inferior */
+    font-size: 22px;
+    color: #ffffff;
+}
+
+/* Estilo para el botón Ver dentro de la tarjeta de examen */
+.examen-card .ver-btn {
+    display: inline-block;
+    padding: 8px 20px; /* Ajuste del padding para que el botón no sea muy grande */
+    background-color: #ff8c00; /* Color naranja */
+    color: #ffffff;  /* Texto blanco */
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.examen-card .ver-btn:hover {
+    background-color: #ff0000;  /* Color rojo al pasar el mouse */
+}

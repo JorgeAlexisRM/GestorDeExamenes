@@ -8,6 +8,10 @@
 
     <link href="stylesalumno/circulos.css" rel="stylesheet">
     <link href="stylesalumno/menulateral.css" rel="stylesheet">
+    <link href="stylesalumno/materia-tarjetas.css" rel="stylesheet">
+    <link href="stylesalumno/tarjetas-examenes.css" rel="stylesheet">
+    <link href="stylesalumno/estiloExamenContestar.css" rel="stylesheet">
+
 </head>
 
 <body onload="mostrarMateriasInscritas()">
@@ -47,15 +51,20 @@
                         <label for="Clave">Clave:</label>
                         <input type="text" id="Clave" name="Clave" placeholder="Ingrese su Clave" required>
                         <button class="button-r button-a" onclick="inscribirMateriaPorClave()">Ingresar</button>
+                        
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Aquí es donde se muestra la lista de materias -->
-        <div id="listaMaterias">
-            <!-- Las tarjetas de las materias se generará dinámicamente aquí -->
-        </div>
+        <div id="listaMaterias"></div>
+
+        <div id="divParaExamenes"></div>
+
+        <div id="examen"></div>
+        
+
         
     </div> <!-- Fin del contenedor principal -->
 
@@ -67,6 +76,8 @@
     <script src="js/firebase-con.js"></script>
     <script src="scriptsalumno/controlaMenu.js"></script>
     <script src="scriptsalumno/clave.js"></script>
+    <script src="scriptsAlumno/examenAlumno.js"></script>
+
 </body>
 
 </html>
