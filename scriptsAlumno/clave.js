@@ -10,14 +10,14 @@ function inscribirMateriaPorClave() {
             // Si la materia existe, inscribimos al alumno en esa materia
             const userId = firebase.auth().currentUser.uid; // Obtener el ID del usuario actual (alumno)
             const userRef = firebase.firestore().collection("usuarios").doc(userId);
-            
+
             userRef.update({
                 materiasInscritas: firebase.firestore.FieldValue.arrayUnion(claveMateria)
             }).then(() => {
                 alert("Has sido inscrito en la materia exitosamente.");
                 // Aquí puedes llamar a otra función para actualizar la lista de materias en la interfaz
 
-                 // Llamamos a la función para actualizar la lista de materias inscritas
+                // Llamamos a la función para actualizar la lista de materias inscritas
                 mostrarMateriasInscritas();
 
             }).catch((error) => {
@@ -29,7 +29,7 @@ function inscribirMateriaPorClave() {
         }
     }).catch((error) => {
         console.error("Error al obtener la materia: ", error);
-    }); 
+    });
 }
 
 // Función para mostrar las materias inscritas del alumno
@@ -42,14 +42,14 @@ function mostrarMateriasInscritas() {
     userRef.get().then((doc) => {
         if (doc.exists && doc.data().materiasInscritas) {
             const materiasInscritas = doc.data().materiasInscritas;
-            
+
             // Limpiar el div de listaMaterias antes de agregar contenido nuevo
             const listaMateriasDiv = document.getElementById("listaMaterias");
             listaMateriasDiv.innerHTML = '';
 
             materiasInscritas.forEach(materiaId => {
                 const materiaRef = firebase.firestore().collection("materias").doc(materiaId);
-                
+
                 materiaRef.get().then((materiaDoc) => {
                     if (materiaDoc.exists) {
                         // Aquí generamos el HTML para cada materia
@@ -57,7 +57,6 @@ function mostrarMateriasInscritas() {
                         const materiaElement = `
                             <div class="materia-card" data-id="${materiaId}" onclick="mostrarExamenes('${materiaId}')">
                                 <h2>${materiaData.nombre}</h2>
-                               
                             </div>
                         `;
                         listaMateriasDiv.innerHTML += materiaElement;
@@ -94,7 +93,7 @@ function mostrarExamenes(materiaId) {
         const examenesRef = firebase.firestore().collection("examenes").where("idMateria", "==", materiaId);
 
         examenesRef.get().then((querySnapshot) => {
-            examenesDiv.innerHTML = ''; 
+            examenesDiv.innerHTML = '';
 
             querySnapshot.forEach((examDoc) => {
                 const examData = examDoc.data();
@@ -124,7 +123,7 @@ function mostrarExamenes(materiaId) {
 
                 // Si el botón "Realizar Examen" existe, añade un oyente de eventos
                 if (!examenesRealizados.includes(examDoc.id)) {
-                    document.getElementById(`verBtn_${examDoc.id}`).addEventListener("click", function() {
+                    document.getElementById(`verBtn_${examDoc.id}`).addEventListener("click", function () {
                         verExamen(examDoc.id, examData.titulo);
                     });
                 }
