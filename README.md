@@ -1,10 +1,8 @@
 # Gestor de examenes | Javascript | HTML-CSS | Firebase
 
 <p align="center" >
-     <img width="300" heigth="300" src="https://www.canva.com/design/DAF5VWOP9gY/view">
+     <img width="300" heigth="300" src="https://github.com/JorgeAlexisRM/GestorDeExamenes/assets/121999643/2b8ed824-81dc-43b7-99fe-756639d46e06">
 </p>
-
----
 
 ## 🖥️ Tecnologías Utilizadas:
 
